@@ -45,8 +45,9 @@ public class ProducerController {
 	public ResponseEntity<List<ProducerDTO>> historyAwards() {
 		// Busca os produtores que tiveram filmes premiados, porém ao carregar os produtores todos os filmes dele são carregados
 		List<Producer> producers = producerService.historyAwards();
-		// Converte para DTO e filtra somente os filmes premitados o produtor
-		List<ProducerDTO> producersDTO = producers.stream().map(producer -> new ProducerDTO(producer, true)).collect(Collectors.toList());
+		System.out.println(producers.size());
+		
+		List<ProducerDTO> producersDTO = producers.stream().map(producer -> new ProducerDTO(producer)).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(producersDTO);
 	}

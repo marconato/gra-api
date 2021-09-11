@@ -4,10 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.texoIT.marconato.gra.domain.Movie;
 import com.texoIT.marconato.gra.domain.Producer;
 import com.texoIT.marconato.gra.domain.Studio;
 import com.texoIT.marconato.gra.repository.ProducerRepository;
@@ -69,7 +71,15 @@ public class ProducerService {
 	}
 	
 	public List<Producer> historyAwards() {
-		return this.producerRepository.findByMovies_WinnerIsTrueOrderByName();
+		List<Producer> awards = this.producerRepository.findByMovies_WinnerIsTrueOrderByName();
+		
+		// Percorre a lista de produtores para atualizar a lista e manter somente os filmes vencedores do prêmio
+		awards.stream().forEach(producer -> {
+			List<Movie> movies = producer.getMovies().stream().filter(movie -> movie.getWinner()).collect(Collectors.toList());
+			producer.setMovies(new HashSet<Movie>(movies));
+		});
+		
+		return awards;
 	}
 
 }
