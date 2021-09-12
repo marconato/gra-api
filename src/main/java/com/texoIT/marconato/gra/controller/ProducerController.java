@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.texoIT.marconato.gra.domain.Producer;
 import com.texoIT.marconato.gra.dto.ProducerDTO;
 import com.texoIT.marconato.gra.dto.ProducerHistoryAwardsDTO;
+import com.texoIT.marconato.gra.dto.ProducerMovieWinnerDTO;
 import com.texoIT.marconato.gra.service.ProducerService;
+
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin("*")
 @RestController
@@ -24,6 +27,7 @@ public class ProducerController {
 	@Autowired
 	private ProducerService producerService;
 	
+	@ApiOperation(value = "Retorna a lista de todos os produtores de filmes")
 	@GetMapping
 	public ResponseEntity<List<ProducerDTO>> findAll() {
 		
@@ -33,6 +37,7 @@ public class ProducerController {
 		return ResponseEntity.ok().body(producersDTO);
 	}
 
+	@ApiOperation(value = "Retorna o estúdio através do id")
 	@GetMapping("/{id}")
 	public ResponseEntity<ProducerDTO> findById(@PathVariable Long id) {
 		Producer producer = producerService.findById(id);
@@ -41,20 +46,20 @@ public class ProducerController {
 		return ResponseEntity.ok().body(producerDTO);
 	}
 	
+	@ApiOperation(value = "Retorna a lista de todos os ganhadores do prêmio de pior filme")
 	@GetMapping("awards")
-	public ResponseEntity<List<ProducerDTO>> historyAwards() {
-		// Busca os produtores que tiveram filmes premiados, porém ao carregar os produtores todos os filmes dele são carregados
-		List<Producer> producers = producerService.historyAwards();
-		System.out.println(producers.size());
-		
-		List<ProducerDTO> producersDTO = producers.stream().map(producer -> new ProducerDTO(producer)).collect(Collectors.toList());
-		
-		return ResponseEntity.ok().body(producersDTO);
+	public ResponseEntity<List<ProducerMovieWinnerDTO>> historyAwards() {
+		// Busca os produtores que tiveram filmes premiados
+		List<ProducerMovieWinnerDTO> producerMovieWinners = producerService.historyAwards();
+		return ResponseEntity.ok().body(producerMovieWinners);
 	}
 	
-	@GetMapping("statistic")
-	public ResponseEntity<ProducerHistoryAwardsDTO> statisticAwards() {
-		return null;
+	@ApiOperation(value = "Obtém uma lista com o(s) produtor(es) com maior intervalo entre dois prêmios consecutivos, "
+			+ "e o(s) que obtiveram dois prêmios mais rápido")
+	@GetMapping("breakaward")
+	public ResponseEntity<ProducerHistoryAwardsDTO> breakAward() {
+		ProducerHistoryAwardsDTO producerHistoryAwardsDTO = producerService.breakAward();
+		return ResponseEntity.ok().body(producerHistoryAwardsDTO);
 	}
 
 }

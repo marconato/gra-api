@@ -1,4 +1,4 @@
-package com.texoIT.marconato.gra.service.exception;
+package com.texoIT.marconato.gra.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 

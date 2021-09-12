@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.texoIT.marconato.gra.domain.Studio;
+import com.texoIT.marconato.gra.exceptions.ObjectNotFoundException;
 import com.texoIT.marconato.gra.repository.StudioRepository;
-import com.texoIT.marconato.gra.service.exception.ObjectNotFoundException;
 
 @Service
 public class StudioService {
@@ -65,5 +65,14 @@ public class StudioService {
 
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Studio.class.getName()));
+	}
+	
+	/**
+	 * Serviço para remover a entidade estúdio
+	 * @param id
+	 */
+	public void delete(Long id) {
+		this.findById(id);
+		this.studioRepository.deleteById(id);
 	}
 }

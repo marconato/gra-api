@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 import com.texoIT.marconato.gra.domain.Movie;
 import com.texoIT.marconato.gra.domain.Producer;
 import com.texoIT.marconato.gra.domain.Studio;
+import com.texoIT.marconato.gra.exceptions.ObjectNotFoundException;
 import com.texoIT.marconato.gra.repository.MovieRepository;
-import com.texoIT.marconato.gra.service.exception.ObjectNotFoundException;
 
 @Service
 public class MovieService {
@@ -69,6 +69,10 @@ public class MovieService {
 		this.movieRepository.deleteById(id);
 	}
 	
+	/**
+	 * Método para importar o arquivo csv de filmes do repositório resources
+	 * @throws IOException
+	 */
 	public void importMoviesFile() throws IOException {
 		
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();

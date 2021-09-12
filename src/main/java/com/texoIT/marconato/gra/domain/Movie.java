@@ -76,4 +76,9 @@ public class Movie {
 		return winner != null && winner.equalsIgnoreCase("yes");
 	}
 
+	@Override
+	public String toString() {
+		return "Movie [id=" + id + ", year=" + year + ", title=" + title + ", winner=" + winner + "]";
+	}
+	
 }
