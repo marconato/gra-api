@@ -15,7 +15,7 @@ A aplicação Backend consiste em um sistema multi-camadas desenlvolvido em Java
 
 Foi utilizado o gerenciador de dependencias Maven 3.6.3 para baixar as bibliotecas utilizadas na aplicação, portanto é necessário sua instalação
 
-# Executando do projeto
+# Executando o projeto
 O projeto pode ser baixado do repositório github com o seguinte comando (Necessário instalar o github):
 
 <i><b>git clone https://github.com/marconato/gra-api.git</b></i>
@@ -36,3 +36,7 @@ Para melhor visualizar os serviços disponíveis nesta aplicação acesse: <a hr
 
 
 # Testes
+
+Alguns testes de integração foram implementados na aplicação no pacote de teste e pode ser executado com o comando maven: 
+
+<i><b>mvn test</b></i>
