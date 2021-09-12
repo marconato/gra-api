@@ -18,15 +18,21 @@ Foi utilizado o gerenciador de dependencias Maven 3.6.3 para baixar as bibliotec
 # Executando o projeto
 O projeto pode ser baixado do repositório github com o seguinte comando (Necessário instalar o github):
 
-<i><b>git clone https://github.com/marconato/gra-api.git</b></i>
+```
+git clone https://github.com/marconato/gra-api.git
+```
 
 Após baixar o projeto do repositório entre no diretório baixado e compile a aplicação com o seguinte código para baixar as dependências:
 
-<i><b>mvn clean install</b></i>
+```
+mvn clean install
+```
 
 Baixado o projeto e as suas dependências, execute a aplicação com o seguinte comando maven:
 
-<i><b>mvn spring-boot:run</b></i>
+```
+mvn spring-boot:run
+```
 
 A aplicação estará disponível para acesso no seguinte endereço: <a href="http://localhost:8080/">http://localhost:8080</a>
 
@@ -39,4 +45,6 @@ Para melhor visualizar os serviços disponíveis nesta aplicação acesse: <a hr
 
 Alguns testes de integração foram implementados na aplicação no pacote de teste e pode ser executado com o comando maven: 
 
-<i><b>mvn test</b></i>
+```
+mvn test
+```
