@@ -40,6 +40,13 @@ A aplicação estará disponível para acesso no seguinte endereço: <a href="ht
 
 Para melhor visualizar os serviços disponíveis nesta aplicação acesse: <a href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a>
 
+# Heroku
+
+A Heroku é uma plataforma nuvem que faz deploy de várias aplicações back-end seja para hospedagem, testes em produção ou escalar as suas aplicações. Também tem integração com o GitHub, deixando o uso mais fácil e com containers denominados Dyno.
+
+Para facilitar o acesso a aplicação esta disponível no heroku através do seguinte link: <a href="https://gra-api.herokuapp.com/swagger-ui.html#/">https://gra-api.herokuapp.com/swagger-ui.html#/</a>
+
+O plano utilizado para deploy no Heroku é free e limitado, mas ao mesmo tempo poderoso: ele permite criar quantas apps forem necessário, mas só uma pode rodar 24x7. O default é a aplicação desligar depois de 30 min sem acesso, caso a aplicação demore para acessar na primeira vez aguarde um instante pois o Heroky este reestabelecendo o serviço;
 
 # Testes
 
