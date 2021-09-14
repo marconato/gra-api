@@ -1,6 +1,7 @@
 package com.texoIT.marconato.gra.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -95,6 +96,8 @@ public class ProducerService {
 				}
 			}
 		}
+		// Ordena a lista de vencedores por nome do produtor e ano
+		producerMovieWinners.sort(Comparator.comparing(ProducerMovieWinnerDTO::getProducer).thenComparing(ProducerMovieWinnerDTO::getYear));
 		
 		return producerMovieWinners;
 	}
@@ -127,32 +130,32 @@ public class ProducerService {
 		ProducerMovieWinnerDTO previous;
 		ProducerMovieWinnerDTO following;
 		for (int i = 0; i < winners.size(); i++) {
+			previous = winners.get(i);
 			for (int j = 0; j < winners.size(); j++) {
-				previous = winners.get(i);
 				following = winners.get(j);
 				
 				// Se o nome do produtor for o mesmo e o filme for diferetne
 				if (previous.getProducer().equals(following.getProducer()) 
 						&& previous.getMovie() != following.getMovie()) {
-					
-					// The java.lang.Math.abs() returns the absolute value of a given argument. 
-					// If the argument is not negative, the argument is returned.
-					// If the argument is negative, the negation of the argument is returned
-					Integer interval = Math.abs(previous.getYear() - following.getYear());
-					
-					if (isMin) {
-						if (interval < producerAwardsDTO.getInterval()) {
-							producerAwardsDTO.setInterval(interval);
-							producerAwardsDTO.setProducer(previous.getProducer());
-							producerAwardsDTO.setPreviousWin(previous.getYear());
-							producerAwardsDTO.setFollowingWin(following.getYear());
-						}
-					} else {
-						if (interval > producerAwardsDTO.getInterval()) {
-							producerAwardsDTO.setInterval(interval);
-							producerAwardsDTO.setProducer(previous.getProducer());
-							producerAwardsDTO.setPreviousWin(previous.getYear());
-							producerAwardsDTO.setFollowingWin(following.getYear());
+
+					Integer interval = following.getYear() - previous.getYear();
+					if (interval > 0) {
+						if (isMin) {
+							if (interval < producerAwardsDTO.getInterval()) {
+								producerAwardsDTO.setInterval(interval);
+								producerAwardsDTO.setProducer(previous.getProducer());
+								producerAwardsDTO.setPreviousWin(previous.getYear());
+								producerAwardsDTO.setFollowingWin(following.getYear());
+								break;
+							}
+						} else {
+							if (interval > producerAwardsDTO.getInterval()) {
+								producerAwardsDTO.setInterval(interval);
+								producerAwardsDTO.setProducer(previous.getProducer());
+								producerAwardsDTO.setPreviousWin(previous.getYear());
+								producerAwardsDTO.setFollowingWin(following.getYear());
+								break;
+							}
 						}
 					}
 					

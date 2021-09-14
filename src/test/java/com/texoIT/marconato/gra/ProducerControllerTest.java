@@ -29,12 +29,12 @@ class ProducerControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.min.*.producer", hasItem(is("Joel Silver"))))
 				.andExpect(jsonPath("$.min.*.interval", hasItem(is(1))))
-				.andExpect(jsonPath("$.min.*.previousWin", hasItem(is(1991))))
-				.andExpect(jsonPath("$.min.*.followingWin", hasItem(is(1990))))
+				.andExpect(jsonPath("$.min.*.previousWin", hasItem(is(1990))))
+				.andExpect(jsonPath("$.min.*.followingWin", hasItem(is(1991))))
 				.andExpect(jsonPath("$.max.*.producer", hasItem(is("Matthew Vaughn"))))
 				.andExpect(jsonPath("$.max.*.interval", hasItem(is(13))))
-				.andExpect(jsonPath("$.max.*.previousWin", hasItem(is(2015))))
-				.andExpect(jsonPath("$.max.*.followingWin", hasItem(is(2002))));
+				.andExpect(jsonPath("$.max.*.previousWin", hasItem(is(2002))))
+				.andExpect(jsonPath("$.max.*.followingWin", hasItem(is(2015))));
 	}
 	
 	@Test

@@ -15,7 +15,7 @@ public interface ProducerRepository extends JpaRepository<Producer, Long> {
 	 * Busca somente os produtores que tiveram filmes premiados
 	 * @return
 	 */
-	@Query(value="select p from Producer p inner join p.movies ms where ms.winner = true")
+	@Query(value="select p from Producer p inner join p.movies ms where ms.winner = true order by p.name")
 	public List<Producer> findWinnerProducers();
 
 }
